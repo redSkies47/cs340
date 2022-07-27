@@ -1,4 +1,3 @@
-{{!-- Create a table --}}
 <table>
 
     {{!-- Header section --}}
@@ -21,11 +20,9 @@
         {{!-- For each row, print the id, fname, lname, homeworld and age, in order --}}
         {{#each data}}
         <tr>
-            <td>{{this.id}}</td>
-            <td>{{this.fname}}</td>
-            <td>{{this.lname}}</td>
-            <td>{{this.homeworld}}</td>
-            <td>{{this.age}}</td>
+            <td>{{this.concession_details_id}}</td>
+            <td>{{this.concessions_id}}</td>
+            <td>{{this.item_id}}</td>
         </tr>
         {{/each}}
     </tbody>
