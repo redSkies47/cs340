@@ -104,4 +104,4 @@ dist
 .tern-port
 
 # Ignore Connector
-/db-connector.js
+.database/db-connector.js
