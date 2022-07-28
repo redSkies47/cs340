@@ -18,17 +18,16 @@ var exphbs = require('express-handlebars');     // Import express-handlebars
 app.engine('.hbs', engine({extname: ".hbs"}));  // Create an instance of the handlebars engine to process templates
 app.set('view engine', '.hbs');                 // Tell express to use the handlebars engine whenever it encounters a *.hbs file.
 
-// // Static Files
-// app.use(express.static('public'));
-
 /*
     ROUTES
 */
 
+// Our Index.html page
 app.get('/', function(req, res)
 {
     res.render('start');                    // Note the call to render() and not send(). Using render() ensures the templating engine
 });                                         // will process this file, before sending the finished HTML to the client.
+
 
 // READ operation for Genres
 app.get('/Genres', function(req, res)
@@ -40,6 +39,7 @@ app.get('/Genres', function(req, res)
         res.render('genres', {data: rows});                 // Render the concessions.hbs file, and also send the renderer
     })                                                      // an object where 'data' is equal to the 'rows' we
 });  
+
 
 // CREATE operation for Genres
 app.post('/add-genre-form', function(req, res){
@@ -54,8 +54,8 @@ app.post('/add-genre-form', function(req, res){
     }
 
     // Create the query and run it on the database
-    query1 = `INSERT INTO Genres (genre_id, genre) VALUES (${genreID}, '${data['input-genre-name']}');`;
-    db.pool.query(query1, function(error, rows, fields){
+    query2 = `INSERT INTO Genres (genre_id, genre) VALUES (${genreID}, '${data['input-genre-name']}');`;
+    db.pool.query(query2, function(error, rows, fields){
 
         // Check to see if ther was an error
         if (error) {
@@ -74,17 +74,102 @@ app.post('/add-genre-form', function(req, res){
     })
 });
 
+
+// READ operation for Ratings
+app.get('/Ratings', function(req, res)
+{  
+    let query3 = 'SELECT * FROM `Ratings`;';  // Define our query
+
+    db.pool.query(query3, function(error, rows, fields){   
+
+        res.render('ratings', {data: rows});                 
+    })                                                      
+});
+
+
+// READ operation for Tickets
+app.get('/Tickets', function(req, res)
+{  
+    let query5 = 'SELECT * FROM `Tickets`;';  // Define our query
+
+    db.pool.query(query5, function(error, rows, fields){   
+
+        res.render('tickets', {data: rows});                 
+    })                                                      
+});
+
+
+// READ operation for Ticket Types
+app.get('/Ticket_Types', function(req, res)
+{  
+    let query7 = 'SELECT * FROM `Tickets`;';  // Define our query
+
+    db.pool.query(query7, function(error, rows, fields){   
+
+        res.render('ticket_types', {data: rows});                 
+    })                                                      
+});
+
+
+// READ operation for Movies
+app.get('/Movies', function(req, res)
+{  
+    let query9 = 'SELECT * FROM `Movies`;';  // Define our query
+
+    db.pool.query(query9, function(error, rows, fields){   
+
+        res.render('movies', {data: rows});                 
+    })                                                      
+});
+
+
+// READ operation for Shows
+app.get('/Shows', function(req, res)
+{  
+    let query11 = 'SELECT * FROM `Shows`;';  // Define our query
+
+    db.pool.query(query11, function(error, rows, fields){   
+
+        res.render('shows', {data: rows});                 
+    })                                                      
+});
+
+
+// READ operation for Items
+app.get('/Items', function(req, res)
+{  
+    let query13 = 'SELECT * FROM `Items`;';  // Define our query
+
+    db.pool.query(query13, function(error, rows, fields){   
+
+        res.render('items', {data: rows});                 
+    })                                                      
+});
+
+
 // READ operation for Concessions_has_Items
 app.get('/Concessions', function(req, res)
     {  
-        let query1 = "SELECT concession_details_id AS ID, concessions_id, item_id FROM `Concessions_has_Items`;";
-        let query2 = "SELECT * FROM `Concessions`;";            // Define our query
+        let query14 = "SELECT concession_details_id AS ID, concessions_id, item_id FROM `Concessions_has_Items`;";
+        let query15 = "SELECT * FROM `Concessions`;";            // Define our query
 
-        db.pool.query(query1, function(error, rows, fields){    // Execute the query
+        db.pool.query(query14, function(error, rows, fields){    // Execute the query
 
             res.render('concessions', {data: rows});            // Render the concessions.hbs file, and also send the renderer
         })                                                      // an object where 'data' is equal to the 'rows' we
     });                                                         // received back from the query
+
+
+// READ operation for Employees
+app.get('/Employees', function(req, res)
+{  
+    let query17 = 'SELECT * FROM `Employees`;';  // Define our query
+
+    db.pool.query(query17, function(error, rows, fields){   
+
+        res.render('employees', {data: rows});                 
+    })                                                      
+});
 
 /*
     LISTENER

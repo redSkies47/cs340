@@ -1,0 +1,135 @@
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <script language="JavaScript">
+      function showform(dowhat) {
+        /*
+        * four DIVS: browse, insert, update, delete
+        * this function sets one visible the others not
+        */
+        if (dowhat == 'insertItems'){
+          document.getElementById('browse').style.display = 'none';
+          document.getElementById('insertItems').style.display = 'block';
+          document.getElementById('updateItems').style.display = 'none';
+          document.getElementById('deleteItems').style.display = 'none';
+        }
+        else if (dowhat == 'updateItems'){
+          document.getElementById('browse').style.display = 'none';
+          document.getElementById('insertItems').style.display = 'none';
+          document.getElementById('updateItems').style.display = 'block';
+          document.getElementById('deleteItems').style.display = 'none';
+        }
+        else if (dowhat == 'deleteItems'){
+          document.getElementById('browse').style.display = 'none';
+          document.getElementById('insertItems').style.display = 'none';
+          document.getElementById('updateItems').style.display = 'none';
+          document.getElementById('deleteItems').style.display = 'block';
+        }
+        else if (dowhat == 'insertConcessions'){
+          document.getElementById('browse').style.display = 'none';
+          document.getElementById('insertItems').style.display = 'none';
+          document.getElementById('updateItems').style.display = 'none';
+          document.getElementById('deleteItems').style.display = 'none';
+        }
+        else if (dowhat == 'all'){
+          document.getElementById('browse').style.display = 'block';
+          document.getElementById('insertItems').style.display = 'block';
+          document.getElementById('updateItems').style.display = 'block';
+          document.getElementById('deleteItems').style.display = 'block';
+        }
+        else { //by default display browse
+          document.getElementById('browse').style.display = 'browse';
+          document.getElementById('insertItems').style.display = 'none';
+          document.getElementById('updateItems').style.display = 'none';
+          document.getElementById('deleteItems').style.display = 'none';
+        }
+      }
+      function insertItems() { showform('insertItems'); }
+      function updateItems(pid) { showform('updateItems'); }
+      function deleteItems(pid) { showform ('deleteItems'); }
+      function browseItems() { showform ('browse'); }
+      function showAll() { showform ('all'); }
+  </script>
+    <title>Items</title>
+</head>
+
+<body onload="browseItems()">
+  <div id="browse">
+    <h1 style="text-align: center;" class="title">Items</h1>
+    <div style="text-align: center;">
+    [ <a href="Movies">Movies</a> | <a href="Genres">Genres</a> | <a href="Ratings">Ratings</a> | <a href="Tickets">Tickets</a> | <a href="Ticket_Types">Ticket Types</a> | 
+    <a href="Shows">Shows</a> | <a href="Items">Items</a> | <a href="Concessions">Concessions</a> | <a href="Employees">Employees</a> ]    <table border="1" cellpadding="5" style="margin-left: auto; margin-right: auto;" class="table">
+    </div>
+    <p>&nbsp;</p>
+      <caption style="text-align:center"><strong>Items</strong></caption>
+      <tr>
+        <th><a href="#" onClick="newItem()">Add +</a></th>
+        <th class="pk">item_id</th>
+        <th>item_cost</th>
+        <th>item_name</th>
+      </tr>
+      <tr>
+        <td></td>
+        <td>1</td>
+        <td>6</td>
+        <td>popcorn</td>
+      </tr>
+      </table>
+  </div>
+  <p style="text-align: center;"><a href="#" onClick="showAll()">Display all forms</a> | <a href="#" onClick="showform()">Hide all forms</a> </p>
+      <p>&nbsp;</p>
+
+      <!--Insert Item-->
+      <div id="insertItems">
+        <form method="POST" id="addItem">
+            <legend><strong>Add Item</strong></legend>
+              <fieldset class="fields">
+                <label> item id </label> <select name="item_id">
+                  <option value="0">&nbsp;</option>
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    </select>
+                <label> item cost </label> <input type="text" name="item_cost"> 
+                <label> item name </label> <input type="text" name="item_name">
+          </fieldset>
+              <input class="btn" type="submit" id="addItem" value="Add Item">
+              <input class="btn" type="button" value="cancel" onClick="browseItems()">
+      </form> 
+    </div>
+
+    <p>&nbsp;</p>
+    <!--Update Item-->
+    <div id="updateItems">
+        <form method="POST" id="UpdateItem">
+            <legend><strong>Update Item</strong></legend>
+              <fieldset class="fields">
+              <input type="hidden" name="itemID" id="updateitemID" value="1">
+              <label> ID: </label> 1
+              <label> item cost </label> <input type="text" name="item_cost"> 
+              <label> item name </label> <input type="text" name="item_name">
+          </fieldset>
+              <input class="btn" type="submit" id="UpdateItem" value="Update Item">
+              <input class="btn" type="button" value="cancel" onClick="browseItem()">
+    	</form> 
+    </div>
+
+    <p>&nbsp;</p>
+    <div id="deleteItems" style="display: block">
+      <form method="POST" id="deleteItem">
+          <legend><strong>Delete Item</strong></legend>
+              <fieldset class="fields">
+              <p>Are you sure you wish to delete the following?</p>
+              <input type="hidden" name="itemID" id="deleteitemID" value="1">
+              <label><strong>ID:</strong></label> 1
+                <label> <strong>Item</strong> </label> Popcorn
+
+        </fieldset>
+        <input class="btn" type="submit" id="DeleteItem" value="Delete Item">
+              <input class="btn" type="button" value="cancel" onClick="browseItems()">
+      </form> 
+    </div>
+
+</body>

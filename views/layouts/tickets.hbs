@@ -1,0 +1,111 @@
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <script language="JavaScript">
+      function showform(dowhat) {
+        /*
+        * four DIVS: browse, insert, update, delete
+        * this function sets one visible the others not
+        */
+        if (dowhat == 'insertTicket'){
+          document.getElementById('browse').style.display = 'none';
+          document.getElementById('insertTicket').style.display = 'block';
+          document.getElementById('insertShow').style.display = 'none';
+          document.getElementById('insertTicketType').style.display = 'none';
+        }
+        else if (dowhat == 'insertShow'){
+          document.getElementById('browse').style.display = 'none';
+          document.getElementById('insertTicket').style.display = 'none';
+        }
+        else if (dowhat == 'insertTicketType'){
+          document.getElementById('browse').style.display = 'none';
+          document.getElementById('insertTicket').style.display = 'none';
+        }
+        else if (dowhat == 'all'){
+          document.getElementById('browse').style.display = 'block';
+          document.getElementById('insertTicket').style.display = 'block';
+        }
+        else { //by default display browse
+          document.getElementById('browse').style.display = 'browse';
+          document.getElementById('insertTicket').style.display = 'none';
+        }
+      }
+      function newTicket() { showform('insertTicket'); }
+      function browseTickets() { showform ('browse'); }
+      function showAll() { showform ('all'); }
+  </script>
+    <title>Tickets</title>
+</head>
+
+<body onload="browseTickets()">
+  <div id="browse">
+    <h1 style="text-align: center;" class="title">Tickets</h1>
+    <div style="text-align: center;">
+    [ <a href="Movies">Movies</a> | <a href="Genres">Genres</a> | <a href="Ratings">Ratings</a> | <a href="Tickets">Tickets</a> | <a href="Ticket_Types">Ticket Types</a> | 
+    <a href="Shows">Shows</a> | <a href="Items">Items</a> | <a href="Concessions">Concessions</a> | <a href="Employees">Employees</a> ]    <table border="1" cellpadding="5" style="margin-left: auto; margin-right: auto;" class="table">
+    </div>
+    <p>&nbsp;</p>
+      <caption style="text-align:center"><strong>Tickets</strong></caption>
+      <tr>
+        <th><a href="#" onClick="newTicket()">Add +</a></th>
+        <th class="pk">ticket_id</th>
+        <th>ticket_count</th>
+        <th class="fk">ticket_type_id</th>
+        <th>seat_number</th>
+        <th class="fk">show_id</th>
+        <th class="fk">employee_id</th>
+      </tr>
+      <tr>
+        <td></td>
+        <td>1</td>
+        <td>101</td>
+        <td>1</td>
+        <td>11</td>
+        <td>1</td>
+        <td></td>
+      </tr>
+      </table>
+      <p style="text-align: center;"><a href="#" onClick="showAll()">Display all forms</a> | <a href="#" onClick="showform()">Hide all forms</a> </p>
+  </div>
+  <p>&nbsp;</p>
+
+      <!--Insert Tickets-->
+      <div id="insertTicket">
+        <form method="POST" id="addTickets">
+            <legend><strong>Add Tickets</strong></legend>
+              <fieldset class="fields">
+                <label> ticket id </label> <select name="ticket_id">
+                  <option value="0">&nbsp;</option>
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    </select>
+                <label> ticket count </label> <input type="text" name="ticket_count">
+                <label> ticket type id </label> <select name="ticket_type_id">
+                  <option value="0">&nbsp;</option>
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    </select>
+                <label> seat number </label> <input type="text" name="seat_number">
+                <label> show id </label> <select name="show_id">
+                  <option value="0">&nbsp;</option>
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    </select>
+                <label> employee id </label> <select name="employee_id">
+                  <option value="0">&nbsp;</option>
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    </select>
+          </fieldset>
+              <input class="btn" type="submit" id="addTickets" value="Add Ticket">
+              <input class="btn" type="button" value="cancel" onClick="browseTickets()">
+      </form> 
+    </div>
+    <p>&nbsp;</p>
+</body>

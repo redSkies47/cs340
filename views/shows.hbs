@@ -1,0 +1,89 @@
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <script language="JavaScript">
+      function showform(dowhat) {
+        /*
+        * four DIVS: browse, insert, update, delete
+        * this function sets one visible the others not
+        */
+        if (dowhat == 'browse'){
+          document.getElementById('browse').style.display = 'block';
+          document.getElementById('insertShow').style.display = 'none';
+        }
+        else if (dowhat == 'insertShow'){
+          document.getElementById('browse').style.display = 'none';
+          document.getElementById('insertShow').style.display = 'block';
+        }
+        else if (dowhat == 'all'){
+          document.getElementById('browse').style.display = 'block';
+          document.getElementById('insertShow').style.display = 'block';
+        }
+        else { //by default display browse
+          document.getElementById('browse').style.display = 'block';
+          document.getElementById('insertShow').style.display = 'none';
+        }
+      }
+      function newShow() { showform('insertShow'); }
+      function browseShows() { showform ('browse'); }
+      function showAll() { showform ('all'); }
+  </script>
+    <title>Shows</title>
+</head>
+
+<body onload="browseShows()">
+  <!--Shows-->
+  <h1 style="text-align: center;" class="title">Shows</h1>
+  <div style="text-align: center;">
+  [ <a href="Movies">Movies</a> | <a href="Genres">Genres</a> | <a href="Ratings">Ratings</a> | <a href="Tickets">Tickets</a> | <a href="Ticket_Types">Ticket Types</a> | 
+    <a href="Shows">Shows</a> | <a href="Items">Items</a> | <a href="Concessions">Concessions</a> | <a href="Employees">Employees</a> ]
+</div>
+<p>&nbsp;</p>
+  <div id="browse">
+ <table border="1" cellpadding="5" style="margin-left: auto; margin-right: auto;" class="table">
+    <tr>
+      <caption style="text-align:center"><strong>Shows</strong></caption>
+      <th><a href="#" onClick="newShow()">Add +</a></th>
+      <th class="pk">show_id</th>
+      <th>time_start</th>
+      <th>time_end</th>
+      <th class="fk">movie_id</th>
+    </tr>
+    <tr>
+      <td></td>
+      <td>1</td>
+      <td>2022-07-08 14:00:00</td>
+      <td>2022-07-08 16:30:00</td>
+      <td>2</td>
+    </tr>
+  </table>
+  </div>
+  <p style="text-align: center;"><a href="#" onClick="showAll()">Display all forms</a> | <a href="#" onClick="showform()">Hide all forms</a> </p>
+
+  <!--Insert Shows-->
+  <div id="insertShow">
+    <form method="POST" id="addShows">
+        <legend><strong>Add Shows</strong></legend>
+          <fieldset class="fields">
+            <label> show id </label> <select name="show_id">
+              <option value="0">&nbsp;</option>
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                </select>
+            <label> time start </label> <input type="text" name="time_start" placeholder="2022-01-01 12:00:00"> 
+            <label> time end </label> <input type="text" name="time_end" placeholder="2022-01-01 12:00:00">
+            <label> movie_id </label> <select name="movie_id">
+              <option value="0">&nbsp;</option>
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                </select>
+      </fieldset>
+          <input class="btn" type="submit" id="addShows" value="Add Shows">
+          <input class="btn" type="button" value="cancel" onClick="browseShows()">
+  </form> 
+  </div>
+</body>

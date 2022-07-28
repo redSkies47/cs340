@@ -1,0 +1,79 @@
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <script language="JavaScript">
+      function showform(dowhat) {
+        /*
+        * four DIVS: browse, insert, update, delete
+        * this function sets one visible the others not
+        */
+        if (dowhat == 'browse'){
+          document.getElementById('browse').style.display = 'block';
+          document.getElementById('insertRating').style.display = 'none';
+        }
+        else if (dowhat == 'insertShow'){
+          document.getElementById('browse').style.display = 'none';
+          document.getElementById('insertRating').style.display = 'block';
+        }
+        else if (dowhat == 'all'){
+          document.getElementById('browse').style.display = 'block';
+          document.getElementById('insertRating').style.display = 'block';
+        }
+        else { //by default display browse
+          document.getElementById('browse').style.display = 'block';
+          document.getElementById('insertRating').style.display = 'none';
+        }
+      }
+      function newRating() { showform('insertRating'); }
+      function browseRatings() { showform ('browse'); }
+      function showAll() { showform ('all'); }
+  </script>
+    <title>Ratings</title>
+</head>
+
+<body onload="browseRatings()">
+  <!--Shows-->
+  <h1 style="text-align: center;" class="title">Ratings</h1>
+  <div style="text-align: center;">
+  [ <a href="Movies">Movies</a> | <a href="Genres">Genres</a> | <a href="Ratings">Ratings</a> | <a href="Tickets">Tickets</a> | <a href="Ticket_Types">Ticket Types</a> | 
+    <a href="Shows">Shows</a> | <a href="Items">Items</a> | <a href="Concessions">Concessions</a> | <a href="Employees">Employees</a> ]
+<p>&nbsp;</p>
+ <div id="browse">
+ <!--Ratings-->
+ <table border="1" cellpadding="5" style="margin-left: auto; margin-right: auto;" class="table">
+    <caption style="text-align:center"><strong>Ratings</strong></caption>
+    <tr>
+      <th><a href="#" onClick="newRatings()">Add +</a></th>
+      <th class="pk">rating_id</th>
+      <th>rating_description</th>
+    </tr>
+    <tr>
+      <td></td>
+      <td>1</td>
+      <td>G</td>
+    </tr>
+  </table>
+  </div>
+  <p style="text-align: center;"><a href="#" onClick="showAll()">Display all forms</a> | <a href="#" onClick="showform()">Hide all forms</a> </p>
+
+  <!--Insert Shows-->
+  <!--Insert Ratings-->
+  <div id="insertRating">
+    <form method="POST" id="addRatings">
+        <legend><strong>Add Ratings</strong></legend>
+          <fieldset class="fields">
+            <label> rating id </label> <select name="rating_id">
+              <option value="0">&nbsp;</option>
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                </select>
+            <label> rating description </label> <input type="text" name="rating_description"> 
+      </fieldset>
+          <input class="btn" type="submit" id="addRatings" value="Add Ratings">
+          <input class="btn" type="button" value="cancel" onClick="browseRatings()">
+  </form> 
+</div>
+</body>

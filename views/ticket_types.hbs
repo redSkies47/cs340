@@ -1,0 +1,82 @@
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <script language="JavaScript">
+      function showform(dowhat) {
+        /*
+        * four DIVS: browse, insert, update, delete
+        * this function sets one visible the others not
+        */
+        if (dowhat == 'browse'){
+          document.getElementById('browse').style.display = 'block';
+          document.getElementById('insertTicketTypes').style.display = 'none';
+        }
+        else if (dowhat == 'insertTicketTypes'){
+          document.getElementById('browse').style.display = 'none';
+          document.getElementById('insertTicketTypes').style.display = 'block';
+        }
+        else if (dowhat == 'all'){
+          document.getElementById('browse').style.display = 'block';
+          document.getElementById('insertTicketTypes').style.display = 'block';
+        }
+        else { //by default display browse
+          document.getElementById('browse').style.display = 'block';
+          document.getElementById('insertTicketTypes').style.display = 'none';
+        }
+      }
+      function newTicketType() { showform('insertTicketTypes'); }
+      function browseTicketTypes() { showform ('browse'); }
+      function showAll() { showform ('all'); }
+  </script>
+    <title>Ticket_Types</title>
+</head>
+
+<body onload="browseTicketTypes()">
+  <!--Shows-->
+  <h1 style="text-align: center;" class="title">Ticket Types</h1>
+  <div style="text-align: center;">
+  [ <a href="Movies">Movies</a> | <a href="Genres">Genres</a> | <a href="Ratings">Ratings</a> | <a href="Tickets">Tickets</a> | <a href="Ticket_Types">Ticket Types</a> | 
+    <a href="Shows">Shows</a> | <a href="Items">Items</a> | <a href="Concessions">Concessions</a> | <a href="Employees">Employees</a> ]
+</div>
+<p>&nbsp;</p>
+  <div id="browse">
+  <!--Ticket Types-->
+  <table border="1" cellpadding="5" style="margin-left: auto; margin-right: auto;" class="table">
+    <tr>
+      <caption style="text-align:center"><strong>Ticket_Types</strong></caption>
+      <th><a href="#" onClick="newTicketType()">Add +</a></th>
+      <th class="pk">ticket_type_id</th>
+      <th>ticket_type_name</th>
+      <th>ticket_price</th>
+    </tr>
+    <tr>
+      <td></td>
+      <td>1</td>
+      <td>Child</td>
+      <td>$8.00</td>
+    </tr>
+  </table>
+  </div>
+  <p style="text-align: center;"><a href="#" onClick="showAll()">Display all forms</a> | <a href="#" onClick="showform()">Hide all forms</a> </p>
+
+  <!--Insert Ticket Types-->
+  <div id="insertTicketTypes">
+    <form method="POST" id="addTicketTypes">
+        <legend><strong>Add Ticket Types</strong></legend>
+          <fieldset class="fields">
+            <label> ticket type id </label> <select name="ticket_type_id">
+              <option value="0">&nbsp;</option>
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                </select>
+            <label> ticket type name </label> <input type="text" name="ticket_type_name"> 
+            <label> ticket price </label> <input type="text" name="ticket_price">
+      </fieldset>
+          <input class="btn" type="submit" id="addTicketTypes" value="Add Ticket Types">
+          <input class="btn" type="button" value="cancel" onClick="browseTicketTypes()">
+   </form> 
+  </div>
+</body>

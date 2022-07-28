@@ -1,0 +1,168 @@
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <script language="JavaScript">
+      function showform(dowhat) {
+        /*
+        * four DIVS: browse, insert, update, delete
+        * this function sets one visible the others not
+        */
+        if (dowhat == 'insertMovie'){
+          document.getElementById('browse').style.display = 'none';
+          document.getElementById('insertMovie').style.display = 'block';
+          document.getElementById('deleteMovie').style.display = 'none';
+          document.getElementById('insertMoviesHasGenre').style.display = 'none';
+        }
+        else if (dowhat == 'deleteMovie'){
+          document.getElementById('browse').style.display = 'none';
+          document.getElementById('insertMovie').style.display = 'block';
+          document.getElementById('deleteMovie').style.display = 'none';
+          document.getElementById('insertMoviesHasGenre').style.display = 'none';
+        }
+        else if (dowhat == 'insertMoviesHasGenre'){
+          document.getElementById('browse').style.display = 'none';
+          document.getElementById('insertMovie').style.display = 'none';
+          document.getElementById('deleteMovie').style.display = 'none';
+          document.getElementById('insertMoviesHasGenre').style.display = 'block';
+        }
+        else if (dowhat == 'all'){
+          document.getElementById('browse').style.display = 'block';
+          document.getElementById('insertMovie').style.display = 'block';
+          document.getElementById('deleteMovie').style.display = 'block';
+          document.getElementById('insertMoviesHasGenre').style.display = 'block';
+        }
+        else { //by default display browse
+          document.getElementById('browse').style.display = 'block';
+          document.getElementById('insertMovie').style.display = 'none';
+          document.getElementById('deleteMovie').style.display = 'none';
+          document.getElementById('insertMoviesHasGenre').style.display = 'none';
+        }
+      }
+      function insertMovie() { showform('insertMovie'); }
+      function deleteMovie(pid) { showform('deleteMovie'); }
+      function browseMovies() { showform ('browse'); }
+      function insertMoviesHasGenre() { showform ('insertMoviesHasGenre'); }
+      function showAll() { showform ('all'); }
+  </script>
+    <title>Movies</title>
+</head>
+
+<body onload="browseMovies()">
+  <div id="browse">
+    <h1 style="text-align: center;" class="title">Movies</h1>
+    <div style="text-align: center;">
+    [ <a href="Movies.html">Movies</a> | <a href="Genres.html">Genres</a> | <a href="Ratings.html">Ratings</a> | <a href="Tickets.html">Tickets</a> | <a href="Ticket_Types.html">Ticket Types</a> | 
+    <a href="Shows.html">Shows</a> | <a href="Items.html">Items</a> | <a href="Concessions.html">Concessions</a> | <a href="Employees.html">Employees</a> ]    <table border="1" cellpadding="5" style="margin-left: auto; margin-right: auto;" class="table">
+    </div>
+    <p>&nbsp;</p>
+      <caption style="text-align:center"><strong>Movies</strong></caption>
+      <tr>
+        <th><a href="#" onClick="insertMovie()">Add +</a></th>
+        <th></th>
+        <th class="pk">movie_id</th>
+        <th>movie_name</th>
+        <th>movie_description</th>
+        <th class="fk">rating_id</th>
+        <th class="fk">hall_number</th>
+      </tr>
+      <tr>
+        <td></td>
+        <th><a href="#" onClick="deleteMovie()">Delete</a></th>
+        <td>1</td>
+        <td>Revenge of Darth Jar Jar</td>
+        <td>Somehow Darth Jar Jar has returned.</td>
+        <td>2</td>
+        <td>1</td>
+      </tr>
+      </table>
+    </div>
+    <p style="text-align: center;"><a href="#" onClick="showAll()">Display all forms</a> | <a href="#" onClick="showform()">Hide all forms</a> </p>
+
+      <!--Insert Movie-->
+      <div id="insertMovie">
+        <form method="POST" id="addMovie">
+            <legend><strong>Add Movie</strong></legend>
+              <fieldset class="fields">
+                <label> movie id </label> <select name="movie_id">
+                  <option value="0">&nbsp;</option>
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    </select>
+                <label> movie name </label> <input type="text" name="movie_name">
+                <label> movie description </label> <input type="text" name="movie_description">
+                <label> rating id </label> <select name="rating_id">
+                  <option value="0">&nbsp;</option>
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    </select>
+                <label> hall number </label> <select name="hall_number">
+                  <option value="0">&nbsp;</option>
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    </select>                
+          </fieldset>
+              <input class="btn" type="submit" id="addMovie" value="Add Movie">
+              <input class="btn" type="button" value="cancel" onClick="browseMovies()">
+        </form> 
+      </div>
+    <p>&nbsp;</p>
+
+    <!--Delete Movie-->
+    <div id="deleteMovie" style="display: block">
+      <form method="POST" id="deleteMovie">
+          <legend><strong>Delete Movie</strong></legend>
+              <fieldset class="fields">
+              <p>Are you sure you wish to delete the following?</p>
+              <input type="hidden" name="movieID" id="deletemovieID" value="1">
+              <label><strong>ID:</strong></label> 1
+                <label> <strong>Movie</strong> </label> Revenge of Darth Jar Jar
+                
+        </fieldset>
+        <input class="btn" type="submit" id="DeleteMovie" value="Delete Movie">
+              <input class="btn" type="button" value="cancel" onClick="browseMovies()">
+      </form> 
+    </div>
+
+    <!--Movies_has_genres-->
+ <div id="browse">
+    <table border="1" cellpadding="5" style="margin-left: auto; margin-right: auto;" class="table">
+        <caption style="text-align:center"><strong>Movies Has Genres</strong></caption>
+        <tr>
+          <th><a href="#" onClick="newMovieHasGenre()">Add +</a></th>
+          <th class="pk">movie_genre_id</th>
+          <th>movie_id</th>
+          <th>genre_id</th>
+        </tr>
+        <tr>
+          <td></td>
+          <td>1</td>
+          <td>1</td>
+          <td>6</td>
+        </tr>
+      </table>
+  </div>
+
+  <!--Insert Movies Has Genres-->
+  <div id="insertMoviesHasGenre">
+    <form method="POST" id="addMovieGenres">
+        <legend><strong>Add Movies Genres</strong></legend>
+          <fieldset class="fields">
+            <label> movie genre id </label> <select name="movie_genre_id">
+              <option value="0">&nbsp;</option>
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                </select>
+            <label> movie id </label> <input type="text" name="movie_id"> 
+            <label> genre id </label> <input type="text" name="genre_id"> 
+      </fieldset>
+          <input class="btn" type="submit" id="addMovieGenres" value="Add Movie Genres">
+          <input class="btn" type="button" value="cancel" onClick="browseMovies()">
+  </form> 
+</div>
+
+</body>

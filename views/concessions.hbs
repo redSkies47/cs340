@@ -73,8 +73,8 @@
   <!--Shows-->
   <h1 style="text-align: center;" class="title">Concessions</h1>
   <div style="text-align: center;">
-  [ <a href="Movies.html">Movies</a> | <a href="Genres.html">Genres</a> | <a href="Ratings.html">Ratings</a> | <a href="Tickets.html">Tickets</a> | <a href="Ticket_Types.html">Ticket Types</a> | 
- <a href="Shows.html">Shows</a> | <a href="Items.html">Items</a> | <a href="Concessions.html">Concessions</a> | <a href="Employees.html">Employees</a> ]
+  [ <a href="Movies">Movies</a> | <a href="Genres">Genres</a> | <a href="Ratings">Ratings</a> | <a href="Tickets">Tickets</a> | <a href="Ticket_Types">Ticket Types</a> | 
+    <a href="Shows">Shows</a> | <a href="Items">Items</a> | <a href="Concessions">Concessions</a> | <a href="Employees">Employees</a> ]
   </div>
   <p>&nbsp;</p>
  <div id="browse">
@@ -127,47 +127,9 @@
   </form> 
 </div>
 
-<!--Update Concessions-->
-<div id="updateConcession">
-  <form method="POST" id="UpdateConcession">
-      <legend><strong>Update Concession</strong></legend>
-        <fieldset class="fields">
-        <input type="hidden" name="personID" id="updatepersonID" value="1">
-          <label> ID: </label> 1
-          <label> sale datetime </label> <input type="text" name="sale_datetime" placeholder="2022-01-01 12:00:00"> 
-          <label> price </label> <input type="text" name="price">
-          <label> employee id </label> <select name="employee_id">
-            <option value="0">&nbsp;</option>
-              <option value="1">1</option>
-              <option value="2">2</option>
-              <option value="3">3</option>
-              </select>
-    </fieldset>
-        <input class="btn" type="submit" id="UpdateConcession" value="Update Concession">
-        <input class="btn" type="button" value="cancel" onClick="browseConcessions()">
-</form> 
-</div>
-<p>&nbsp;</p>
-
-<!--Delete Concessions-->
-<div id="deleteConcessions" style="display: block">
-<form method="POST" id="deleteConcession">
-    <legend><strong>Delete Concession</strong></legend>
-        <fieldset class="fields">
-        <p>Are you sure you wish to delete the following?</p>
-        <input type="hidden" name="ConcessionID" id="deleteConcessioneID" value="1">
-        <label><strong>ID:</strong></label> 1
-          <label> <strong>Concession</strong> </label> 
-
-  </fieldset>
-  <input class="btn" type="submit" id="DeleteConcession" value="Delete Concession">
-        <input class="btn" type="button" value="cancel" onClick="browseConcessions()">
-</form> 
-</div>
-
 <!--Concessions_has_items-->
 <div id="browse">
-    <table border="1" cellpadding="5" style="margin-left: auto; margin-right: auto;" class="table">
+  <table border="1" cellpadding="5" style="margin-left: auto; margin-right: auto;" class="table">
         <caption style="text-align:center"><strong>Concessions Has Items</strong></caption>
         {{!-- Header section --}}
         <thead>
@@ -214,6 +176,45 @@
           <label> item id </label> <input type="text" name="item_id"> 
     </fieldset>
         <input class="btn" type="submit" id="addConcessionItems" value="Add Concession Items">
+        <input class="btn" type="button" value="cancel" onClick="browseConcessions()">
+</form> 
+</div>
+
+<!--Update Concessions has items-->
+<div id="updateConcession">
+  <form method="POST" id="UpdateConcession">
+      <legend><strong>Update Concession has items</strong></legend>
+        <fieldset class="fields">
+        <input type="hidden" name="concessionHasItemsID" id="updateConcessionHasItemsID" value="1">
+          <label> ID: </label> 1
+          <fieldset class="fields">
+            <label> concession details id </label> <select name="concession_details_id">
+              <option value="0">&nbsp;</option>
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                </select>
+            <label> concession id </label> <input type="text" name="concession_id"> 
+            <label> item id </label> <input type="text" name="item_id"> 
+    </fieldset>
+        <input class="btn" type="submit" id="UpdateConcessionItems" value="Update Concession Items">
+        <input class="btn" type="button" value="cancel" onClick="browseConcessions()">
+</form> 
+</div>
+<p>&nbsp;</p>
+
+<!--Delete Concessions-->
+<div id="deleteConcessions" style="display: block">
+<form method="POST" id="deleteConcession">
+    <legend><strong>Delete Concession has items</strong></legend>
+        <fieldset class="fields">
+        <p>Are you sure you wish to delete the following?</p>
+        <input type="hidden" name="ConcessionID" id="deleteConcessioneID" value="1">
+        <label><strong>ID:</strong></label> 1
+          <label> <strong>Concession has items</strong> </label> 
+
+  </fieldset>
+  <input class="btn" type="submit" id="DeleteConcession" value="Delete Concession">
         <input class="btn" type="button" value="cancel" onClick="browseConcessions()">
 </form> 
 </div>
