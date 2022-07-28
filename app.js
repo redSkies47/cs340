@@ -147,7 +147,7 @@ app.get('/Items', function(req, res)
 });
 
 
-// READ operation for Concessions_has_Items
+// READ operation for Concessions_has_Items - 1 table loading all
 app.get('/Concessions', function(req, res)
     {  
         let query14 = "SELECT concession_details_id AS ID, concessions_id, item_id FROM `Concessions_has_Items`;";
@@ -158,6 +158,71 @@ app.get('/Concessions', function(req, res)
             res.render('concessions', {data: rows});            // Render the concessions.hbs file, and also send the renderer
         })                                                      // an object where 'data' is equal to the 'rows' we
     });                                                         // received back from the query
+
+// READ operation for Concessions_has_Items - attempt of 2 tables loading
+// app.get('/Concessions', function(req, res)
+//     {  
+//         let query14 = "SELECT concession_details_id AS ID, concessions_id, item_id FROM `Concessions_has_Items`;";
+//         let query15 = "SELECT concessions_id AS cid, saledatime, price, employee_id FROM `Concessions`;";            // Define our query
+
+//         // Use SELECT * to populate Concessions_has_Items
+//         // db.pool.query(query14, function(error, rows, fields){    // Execute the query
+
+//         //     res.render('concessions', {data: rows});
+//         // }) 
+        
+//         // Use SELECT * to populate Concessions too
+//         db.pool.query(query15, function(error, rows, fields){    // Execute the query
+
+//             res.render('concessions', {data: rows});
+//         }) 
+//     });
+
+
+// CREATE operation for Concessions_has_Items
+app.post('/Concessions', function(req, res){
+    // Capture the incoming data and parse it back to a JS object
+    let data = req.body;
+
+    // Capture NULL values
+    let conDetailsID = parseInt(data['input-conDetailsID']);
+    if (isNaN(conDetailsID))
+    {
+        conDetailsID = 'NULL'
+    }
+
+    let concessions_id = parseInt(data['input-concession-id']);
+    if (isNaN(concessions_id))
+    {
+        concessions_id = 'NULL'
+    }
+
+    let items_id = parseInt(data['input-item-id']);
+    if (isNaN(items_id))
+    {
+        items_id = 'NULL'
+    }
+
+    // Create the query and run it on the database
+    query16 = `INSERT INTO Concessions_has_Items (concession_details_id, concessions_id, item_id) VALUES (${conDetailsID}, ${concessions_id}, ${items_id});`;
+    db.pool.query(query16, function(error, rows, fields){
+
+        // Check to see if ther was an error
+        if (error) {
+            
+            // Log the error to the terminal so we know what went wrong, and send the visitor an HTTP response 400 indicating it was a bad request.
+            console.log(error)
+            res.send(JSON.stringify(error));
+            // res.sendStatus(400);
+        }
+         // If there was no error, we redirect back to our Genres route, which automatically runs the SELECT * FROM Genres and
+        // presents it on the screen
+        else
+        {
+            res.redirect('/Concessions')
+        }
+    })
+});
 
 
 // READ operation for Employees

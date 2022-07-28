@@ -149,7 +149,7 @@
         {{!-- Body section --}}
         <tbody>
 
-            {{!-- For each row, print the id, fname, lname, homeworld and age, in order --}}
+            {{!-- For each row, print the id, concessions_id and item_id in order --}}
             {{#each data}}
             <tr>
                 <td>{{this.ID}}</td>
@@ -166,14 +166,22 @@
   <form method="POST" id="addConcessionItems">
       <legend><strong>Add Concessions Items</strong></legend>
         <fieldset class="fields">
-          <label> concession details id </label> <select name="concession_details_id">
-            <option value="0">&nbsp;</option>
+          {{!-- <label for="input-conDetailsID"> concession details id </label>
+            <select id="input-conDetailsID" name="input-conDetailsID">
+              <option value="0">&nbsp;</option>
               <option value="1">1</option>
               <option value="2">2</option>
               <option value="3">3</option>
-              </select>
-          <label> concession id </label> <input type="text" name="concession_id"> 
-          <label> item id </label> <input type="text" name="item_id"> 
+            </select> --}}
+
+          <label for="input-conDetailsID"> concession details id </label>
+          <input type="number" id="input-conDetailsID" name="input-conDetailsID"> 
+
+          <label for="input-concession-id"> concession id </label>
+          <input type="number" id="input-concession-id" name="input-concession-id"> 
+
+          <label for="input-item-id"> item id </label>
+          <input type="number" id="input-item-id" name="input-item-id"> 
     </fieldset>
         <input class="btn" type="submit" id="addConcessionItems" value="Add Concession Items">
         <input class="btn" type="button" value="cancel" onClick="browseConcessions()">
@@ -194,7 +202,7 @@
                 <option value="2">2</option>
                 <option value="3">3</option>
                 </select>
-            <label> concession id </label> <input type="text" name="concession_id"> 
+            <label> concession id </label> <input type="text" name="input-concession-id"> 
             <label> item id </label> <input type="text" name="item_id"> 
     </fieldset>
         <input class="btn" type="submit" id="UpdateConcessionItems" value="Update Concession Items">
