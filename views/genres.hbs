@@ -78,13 +78,14 @@
 
   <!--Insert Genres-->
   <div id="insertGenre">
-    <form method="POST" id="addGenres" action="/add-genre-ajax">
+    <form id="add-genre-form" method="POST" action="/add-genre-form">
         <legend><strong>Add Genres</strong></legend>
           <fieldset class="fields">
             <label for="input-genre-id">genre id</label>
-            <input id="input-genre-id" type="number" name="input-genre-id">
+            <input type="number" name="input-genre-id" id="input-genre-id">
+
             <label for="input-genre-name"> genre name </label> 
-            <input id="input-genre-name" type="text" name="input-genre-name"> 
+            <input type="text" id="input-genre-name" name="input-genre-name"> 
           </fieldset>
           <input class="btn" type="submit">
           {{!-- <input class="btn" type="submit" id="addGenres" value="Add Genre"> --}}
@@ -94,4 +95,4 @@
 </body>
 
 {{!-- Embed our javascript to handle the DOM manipulation and AJAX request --}}
-<script src="./public/js/add_genre.js"></script>
+{{!-- <script src="./public/js/add_genre.js"></script> --}}
