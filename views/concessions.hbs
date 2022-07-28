@@ -1,29 +1,221 @@
-<table>
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <script language="JavaScript">
+      function showform(dowhat) {
+        /*
+        * four DIVS: browse, insert, update, delete
+        * this function sets one visible the others not
+        */
+        if (dowhat == 'browse'){
+          document.getElementById('browse').style.display = 'block';
+          document.getElementById('insertConcession').style.display = 'none';
+          document.getElementById('updateConcession').style.display = 'none';
+          document.getElementById('deleteConcession').style.display = 'none';
+          document.getElementById('insertConcessionsHasItems').style.display = 'none';
+        }
+        else if (dowhat == 'insertConcession'){
+          document.getElementById('browse').style.display = 'none';
+          document.getElementById('insertConcession').style.display = 'block';
+          document.getElementById('updateConcession').style.display = 'none';
+          document.getElementById('deleteConcession').style.display = 'none';
+          document.getElementById('insertConcessionsHasItems').style.display = 'none';
+        }
+        else if (dowhat == 'updateConcession'){
+          document.getElementById('browse').style.display = 'none';
+          document.getElementById('insertConcession').style.display = 'none';
+          document.getElementById('updateConcession').style.display = 'block';
+          document.getElementById('deleteConcession').style.display = 'none';
+          document.getElementById('insertConcessionsHasItems').style.display = 'none';
+        }
+        else if (dowhat == 'deleteConcession'){
+          document.getElementById('browse').style.display = 'block';
+          document.getElementById('insertConcession').style.display = 'none';
+          document.getElementById('updateConcession').style.display = 'none';
+          document.getElementById('deleteConcession').style.display = 'block';
+          document.getElementById('insertConcessionsHasItems').style.display = 'none';
+        }
+        else if (dowhat == 'insertConcessionHasItems'){
+          document.getElementById('browse').style.display = 'none';
+          document.getElementById('insertConcession').style.display = 'none';
+          document.getElementById('updateConcession').style.display = 'none';
+          document.getElementById('deleteConcession').style.display = 'none';
+          document.getElementById('insertConcessionsHasItems').style.display = 'block';
+        }
+        else if (dowhat == 'all'){
+          document.getElementById('browse').style.display = 'block';
+          document.getElementById('insertConcession').style.display = 'block';
+          document.getElementById('updateConcession').style.display = 'block';
+          document.getElementById('deleteConcession').style.display = 'block';
+          document.getElementById('insertConcessionsHasItems').style.display = 'block';
+        }
+        else { //by default display browse
+          document.getElementById('browse').style.display = 'block';
+          document.getElementById('insertConcession').style.display = 'none';
+          document.getElementById('updateConcession').style.display = 'none';
+          document.getElementById('deleteConcession').style.display = 'none';
+          document.getElementById('insertConcessionsHasItems').style.display = 'none';
+        }
+      }
+      function newConcession() { showform('insertConcession'); }
+      function updateConcession(pid) { showform('updateConcession'); }
+      function deleteConcession(pid) { showform ('deleteConcession'); }
+      function newConcessionHasItems() { showform('insertConcessionHasItems'); }
+      function browseConcessions() { showform ('browse'); }
+      function showAll() { showform ('all'); }
+  </script>
+    <title>Concessions</title>
+</head>
 
-    {{!-- Header section --}}
-    <thead>
-
-        {{!-- For just the first row, we print each key of the row object as a header cell so we
-        know what each column means when the page renders --}}
+<body onload="browseConcessions()">
+  <!--Shows-->
+  <h1 style="text-align: center;" class="title">Concessions</h1>
+  <div style="text-align: center;">
+  [ <a href="Movies.html">Movies</a> | <a href="Genres.html">Genres</a> | <a href="Ratings.html">Ratings</a> | <a href="Tickets.html">Tickets</a> | <a href="Ticket_Types.html">Ticket Types</a> | 
+ <a href="Shows.html">Shows</a> | <a href="Items.html">Items</a> | <a href="Concessions.html">Concessions</a> | <a href="Employees.html">Employees</a> ]
+  </div>
+  <p>&nbsp;</p>
+ <div id="browse">
+    <table table border="1" cellpadding="5" style="margin-left: auto; margin-right: auto;" class="table">
         <tr>
-            {{#each data.[0]}}
-            <th>
-                {{@key}}
-            </th>
+          <caption style="text-align:center"><strong>Concessions</strong></caption>
+          <th><a href="#" onClick="newConcession()">Add +</a></th>
+          <th></th>
+          <th></th>
+          <th class="pk">concessions_id</th>
+          <th>sale_datetime</th>
+          <th>price</th>
+          <th class="fk">employee_id</th>
+        </tr>
+        <tr>
+          <td></td>
+          <td><a href="#" onClick="updateConcession()">Edit</a></td>
+          <td><a href="#" onClick="deleteConcession()">Delete</a></td>
+          <td>1</td>
+          <td>2022-07-08 13:50:00</td>
+          <td>13</td>
+          <td>1</td>
+        </tr>
+      </table>
+  </div>
+  <p style="text-align: center;"><a href="#" onClick="showAll()">Display all forms</a> | <a href="#" onClick="showform()">Hide all forms</a> </p>
+
+  <!--Insert Concessions-->
+  <div id="insertConcession">
+    <form method="POST" id="addConcessions">
+        <legend><strong>Add Concessions</strong></legend>
+          <fieldset class="fields">
+            <label> concession id </label> <select name="concession_id">
+              <option value="0">&nbsp;</option>
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                </select>
+            <label> sale datetime </label> <input type="text" name="sale_datetime" placeholder="2022-01-01 12:00:00"> 
+            <label> price </label> <input type="text" name="price">
+            <label> employee id </label> <select name="employee_id">
+              <option value="0">&nbsp;</option>
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                </select>
+      </fieldset>
+          <input class="btn" type="submit" id="addConcession" value="Add Concession">
+          <input class="btn" type="button" value="cancel" onClick="browseConcessions()">
+  </form> 
+</div>
+
+<!--Update Concessions-->
+<div id="updateConcession">
+  <form method="POST" id="UpdateConcession">
+      <legend><strong>Update Concession</strong></legend>
+        <fieldset class="fields">
+        <input type="hidden" name="personID" id="updatepersonID" value="1">
+          <label> ID: </label> 1
+          <label> sale datetime </label> <input type="text" name="sale_datetime" placeholder="2022-01-01 12:00:00"> 
+          <label> price </label> <input type="text" name="price">
+          <label> employee id </label> <select name="employee_id">
+            <option value="0">&nbsp;</option>
+              <option value="1">1</option>
+              <option value="2">2</option>
+              <option value="3">3</option>
+              </select>
+    </fieldset>
+        <input class="btn" type="submit" id="UpdateConcession" value="Update Concession">
+        <input class="btn" type="button" value="cancel" onClick="browseConcessions()">
+</form> 
+</div>
+<p>&nbsp;</p>
+
+<!--Delete Concessions-->
+<div id="deleteConcessions" style="display: block">
+<form method="POST" id="deleteConcession">
+    <legend><strong>Delete Concession</strong></legend>
+        <fieldset class="fields">
+        <p>Are you sure you wish to delete the following?</p>
+        <input type="hidden" name="ConcessionID" id="deleteConcessioneID" value="1">
+        <label><strong>ID:</strong></label> 1
+          <label> <strong>Concession</strong> </label> 
+
+  </fieldset>
+  <input class="btn" type="submit" id="DeleteConcession" value="Delete Concession">
+        <input class="btn" type="button" value="cancel" onClick="browseConcessions()">
+</form> 
+</div>
+
+<!--Concessions_has_items-->
+<div id="browse">
+    <table border="1" cellpadding="5" style="margin-left: auto; margin-right: auto;" class="table">
+        <caption style="text-align:center"><strong>Concessions Has Items</strong></caption>
+        {{!-- Header section --}}
+        <thead>
+            
+            {{!-- For just the first row, we print each key of the row object as a header cell so we
+            know what each column means when the page renders --}}
+            <tr>
+                {{#each data.[0]}}
+                <th>
+                    {{@key}}
+                </th>
+                {{/each}}
+                <th><a href="#" onClick="newConcessionHasItems()">Add +</a></th>
+            </tr>
+        </thead>
+
+        {{!-- Body section --}}
+        <tbody>
+
+            {{!-- For each row, print the id, fname, lname, homeworld and age, in order --}}
+            {{#each data}}
+            <tr>
+                <td>{{this.concession_details_id}}</td>
+                <td>{{this.concessions_id}}</td>
+                <td>{{this.item_id}}</td>
+            </tr>
             {{/each}}
-        </tr>
-    </thead>
+        </tbody>
+    </table>
+</div>
 
-    {{!-- Body section --}}
-    <tbody>
+<!--Insert Concessions Has Items-->
+<div id="insertConcessionsHasItems">
+  <form method="POST" id="addConcessionItems">
+      <legend><strong>Add Concessions Items</strong></legend>
+        <fieldset class="fields">
+          <label> concession details id </label> <select name="concession_details_id">
+            <option value="0">&nbsp;</option>
+              <option value="1">1</option>
+              <option value="2">2</option>
+              <option value="3">3</option>
+              </select>
+          <label> concession id </label> <input type="text" name="concession_id"> 
+          <label> item id </label> <input type="text" name="item_id"> 
+    </fieldset>
+        <input class="btn" type="submit" id="addConcessionItems" value="Add Concession Items">
+        <input class="btn" type="button" value="cancel" onClick="browseConcessions()">
+</form> 
+</div>
 
-        {{!-- For each row, print the id, fname, lname, homeworld and age, in order --}}
-        {{#each data}}
-        <tr>
-            <td>{{this.concession_details_id}}</td>
-            <td>{{this.concessions_id}}</td>
-            <td>{{this.item_id}}</td>
-        </tr>
-        {{/each}}
-    </tbody>
-</table>
+</body>

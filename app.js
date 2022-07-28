@@ -20,9 +20,32 @@ app.set('view engine', '.hbs');                 // Tell express to use the handl
 */
 
 app.get('/', function(req, res)
-    {
-        res.render('index');                    // Note the call to render() and not send(). Using render() ensures the templating engine
-    });                                         // will process this file, before sending the finished HTML to the client.
+{
+    res.render('start');                    // Note the call to render() and not send(). Using render() ensures the templating engine
+});                                         // will process this file, before sending the finished HTML to the client.
+
+// READ operation for Genres
+app.get('/Genres', function(req, res)
+{  
+    let query1 = "SELECT * FROM `Genres`;";  // Define our query
+
+    db.pool.query(query1, function(error, rows, fields){    // Execute the query
+
+        res.render('genres', {data: rows});            // Render the concessions.hbs file, and also send the renderer
+    })                                                      // an object where 'data' is equal to the 'rows' we
+});                                                         // received back from the query 
+
+// READ operation for Concessions_has_Items
+app.get('/Concessions', function(req, res)
+    {  
+        let query1 = "SELECT * FROM `Concessions_has_Items`;";  // Define our query
+        let query2 = "SELECT * FROM `Concessions`;";  // Define our query
+
+        db.pool.query(query1, function(error, rows, fields){    // Execute the query
+
+            res.render('concessions', {data: rows});            // Render the concessions.hbs file, and also send the renderer
+        })                                                      // an object where 'data' is equal to the 'rows' we
+    });                                                         // received back from the query
 
 /*
     LISTENER

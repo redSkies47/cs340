@@ -1,0 +1,90 @@
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <script language="JavaScript">
+      function showform(dowhat) {
+        /*
+        * four DIVS: browse, insert, update, delete
+        * this function sets one visible the others not
+        */
+        if (dowhat == 'browse'){
+          document.getElementById('browse').style.display = 'block';
+          document.getElementById('insertGenre').style.display = 'none';
+        }
+        else if (dowhat == 'insertShow'){
+          document.getElementById('browse').style.display = 'none';
+          document.getElementById('insertGenre').style.display = 'block';
+        }
+        else if (dowhat == 'all'){
+          document.getElementById('browse').style.display = 'block';
+          document.getElementById('insertGenre').style.display = 'block';
+        }
+        else { //by default display browse
+          document.getElementById('browse').style.display = 'block';
+          document.getElementById('insertGenre').style.display = 'none';
+        }
+      }
+      function newGenre() { showform('insertGenre'); }
+      function browseGenres() { showform ('browse'); }
+      function showAll() { showform ('all'); }
+  </script>
+    <title>Genres</title>
+</head>
+
+<body onload="browseGenres()">
+  <!--Shows-->
+  <h1 style="text-align: center;" class="title">Genres</h1>
+  <div style="text-align: center;">
+    [ <a href="Movies">Movies</a> | <a href="Genres">Genres</a> | <a href="Ratings">Ratings</a> | <a href="Tickets">Tickets</a> | <a href="Ticket_Types">Ticket Types</a> | 
+    <a href="Shows">Shows</a> | <a href="Items">Items</a> | <a href="Concessions">Concessions</a> | <a href="Employees">Employees</a> ]
+</div>
+<p>&nbsp;</p>
+ <div id="browse">
+   {{!-- Create a table --}}
+    <table border="1" cellpadding="5" style="margin-left: auto; margin-right: auto;" class="table">
+        <caption style="text-align:center"><strong>Genres</strong></caption>
+        {{!-- Header section --}}
+        <thead>
+
+            {{!-- For just the first row, we print each key of the row object as a header cell so we
+            know what each column means when the page renders --}}
+            <tr>
+                
+                {{#each data.[0]}}
+                <th class="pk">
+                    {{@key}}
+                </th>
+                {{/each}}
+                <th><a href="#" onClick="newGenre()">Add +</a></th>
+            </tr>
+        </thead>
+
+        {{!-- Body section --}}
+        <tbody>
+
+            {{!-- For each row, print the id, fname, lname, homeworld and age, in order --}}
+            {{#each data}}
+            <tr>
+                <td>{{this.genre_id}}</td>
+                <td>{{this.genre}}</td>
+            </tr>
+            {{/each}}
+        </tbody>
+    </table>
+  </div>
+  <p style="text-align: center;"><a href="#" onClick="showAll()">Display all forms</a> | <a href="#" onClick="showform()">Hide all forms</a> </p>
+
+  <!--Insert Genres-->
+  <div id="insertGenre">
+    <form method="POST" id="addGenres">
+        <legend><strong>Add Genres</strong></legend>
+          <fieldset class="fields">
+            <label> genre name </label> <input type="text" name="genre_name"> 
+      </fieldset>
+          <input class="btn" type="submit" id="addGenres" value="Add Genre">
+          <input class="btn" type="button" value="cancel" onClick="browseGenres()">
+  </form> 
+</div>
+</body>
