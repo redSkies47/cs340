@@ -40,10 +40,10 @@
     [ <a href="Movies">Movies</a> | <a href="Genres">Genres</a> | <a href="Ratings">Ratings</a> | <a href="Tickets">Tickets</a> | <a href="Ticket_Types">Ticket Types</a> | 
     <a href="Shows">Shows</a> | <a href="Items">Items</a> | <a href="Concessions">Concessions</a> | <a href="Employees">Employees</a> ]
 </div>
-<p>&nbsp;</p>
+  <p>&nbsp;</p>
  <div id="browse">
    {{!-- Create a table --}}
-    <table border="1" cellpadding="5" style="margin-left: auto; margin-right: auto;" class="table">
+    <table id="genre-table" border="1" cellpadding="5" style="margin-left: auto; margin-right: auto;" class="table">
         <caption style="text-align:center"><strong>Genres</strong></caption>
         {{!-- Header section --}}
         <thead>
@@ -78,13 +78,20 @@
 
   <!--Insert Genres-->
   <div id="insertGenre">
-    <form method="POST" id="addGenres">
+    <form method="POST" id="addGenres" action="/add-genre-ajax">
         <legend><strong>Add Genres</strong></legend>
           <fieldset class="fields">
-            <label> genre name </label> <input type="text" name="genre_name"> 
-      </fieldset>
-          <input class="btn" type="submit" id="addGenres" value="Add Genre">
-          <input class="btn" type="button" value="cancel" onClick="browseGenres()">
-  </form> 
-</div>
+            <label for="input-genre-id">genre id</label>
+            <input id="input-genre-id" type="number" name="input-genre-id">
+            <label for="input-genre-name"> genre name </label> 
+            <input id="input-genre-name" type="text" name="input-genre-name"> 
+          </fieldset>
+          <input class="btn" type="submit">
+          {{!-- <input class="btn" type="submit" id="addGenres" value="Add Genre"> --}}
+          {{!-- <input class="btn" type="button" value="cancel" onClick="browseGenres()"> --}}
+    </form> 
+  </div>
 </body>
+
+{{!-- Embed our javascript to handle the DOM manipulation and AJAX request --}}
+<script src="./public/js/add_genre.js"></script>
