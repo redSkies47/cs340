@@ -42,7 +42,7 @@ app.get('/Genres', function(req, res)
 
 
 // CREATE operation for Genres
-app.post('/add-genre-form', function(req, res){
+app.post('/Genres', function(req, res){
     // Capture the incoming data and parse it back to a JS object
     let data = req.body;
 
@@ -62,7 +62,6 @@ app.post('/add-genre-form', function(req, res){
             
             // Log the error to the terminal so we know what went wrong, and send the visitor an HTTP response 400 indicating it was a bad request.
             console.log(error)
-            // res.send(JSON.stringify(error));
             res.sendStatus(400);
         }
          // If there was no error, we redirect back to our Genres route, which automatically runs the SELECT * FROM Genres and
@@ -87,6 +86,39 @@ app.get('/Ratings', function(req, res)
 });
 
 
+// CREATE operation for Ratings
+app.post('/Ratings', function(req, res){
+    // Capture the incoming data and parse it back to a JS object
+    let data = req.body;
+
+    // Capture NULL values
+    let ratingID = parseInt(data['input-rating-id']);
+    if (isNaN(ratingID))
+    {
+        ratingID = 'NULL'
+    }
+
+    // Create the query and run it on the database
+    query4 = `INSERT INTO Ratings (rating_id, rating_description) VALUES (${ratingID}, '${data['input-rating-description']}');`;
+    db.pool.query(query4, function(error, rows, fields){
+
+        // Check to see if ther was an error
+        if (error) {
+            
+            // Log the error to the terminal so we know what went wrong, and send the visitor an HTTP response 400 indicating it was a bad request.
+            console.log(error)
+            res.sendStatus(400);
+        }
+         // If there was no error, we redirect back to our Ratings route, which automatically runs the SELECT * FROM Genres and
+        // presents it on the screen
+        else
+        {
+            res.redirect('/Ratings')
+        }
+    })
+});
+
+
 // READ operation for Tickets
 app.get('/Tickets', function(req, res)
 {  
@@ -98,16 +130,90 @@ app.get('/Tickets', function(req, res)
     })                                                      
 });
 
+// // CREATE operation for Tickets under construction!
+// app.post('/Ratings', function(req, res){
+//     // Capture the incoming data and parse it back to a JS object
+//     let data = req.body;
+
+//     // Capture NULL values
+//     let ratingID = parseInt(data['input-rating-id']);
+//     if (isNaN(ratingID))
+//     {
+//         ratingID = 'NULL'
+//     }
+
+//     // Create the query and run it on the database
+//     query6 = `INSERT INTO Ratings (rating_id, rating_description) VALUES (${ratingID}, '${data['input-rating-description']}');`;
+//     db.pool.query(query6, function(error, rows, fields){
+
+//         // Check to see if ther was an error
+//         if (error) {
+            
+//             // Log the error to the terminal so we know what went wrong, and send the visitor an HTTP response 400 indicating it was a bad request.
+//             console.log(error)
+//             // res.send(JSON.stringify(error));
+//             res.sendStatus(400);
+//         }
+//          // If there was no error, we redirect back to our Ratings route, which automatically runs the SELECT * FROM Genres and
+//         // presents it on the screen
+//         else
+//         {
+//             res.redirect('/Ratings')
+//         }
+//     })
+// });
+
 
 // READ operation for Ticket Types
 app.get('/Ticket_Types', function(req, res)
 {  
-    let query7 = 'SELECT * FROM `Tickets`;';  // Define our query
+    // let query7 = 'SELECT * FROM `Tickets_Types`;';  // Define our query
+    let query7 = 'SELECT ticket_type_id, ticket_type_name, ticket_price FROM `Ticket_Types`;';
 
     db.pool.query(query7, function(error, rows, fields){   
 
         res.render('ticket_types', {data: rows});                 
     })                                                      
+});
+
+
+// CREATE operation for Tickets Types
+app.post('/Ticket_Types', function(req, res){
+    // Capture the incoming data and parse it back to a JS object
+    let data = req.body;
+
+    // Capture NULL values
+    let typeID = parseInt(data['input-type-id']);
+    if (isNaN(typeID))
+    {
+        typeID = 'NULL'
+    }
+
+    let typePrice = parseFloat(data['input-ticket-price']);
+    if (isNaN(typePrice))
+    {
+        typePrice = 'NULL'
+    }
+
+    // Create the query and run it on the database
+    query8 = `INSERT INTO Ticket_Types (ticket_type_id, ticket_type_name, ticket_price) VALUES (${typeID}, '${data['input-type-name']}', ${typePrice});`;
+    db.pool.query(query8, function(error, rows, fields){
+
+        // Check to see if ther was an error
+        if (error) {
+            
+            // Log the error to the terminal so we know what went wrong, and send the visitor an HTTP response 400 indicating it was a bad request.
+            console.log(error)
+            // res.send(JSON.stringify(error));
+            res.sendStatus(400);
+        }
+         // If there was no error, we redirect back to our Ratings route, which automatically runs the SELECT * FROM Genres and
+        // presents it on the screen
+        else
+        {
+            res.redirect('/Ticket_Types')
+        }
+    })
 });
 
 

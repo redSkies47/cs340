@@ -166,8 +166,7 @@ INSERT INTO Concessions_has_Items (concessions_id, item_id) VALUES (:concessions
 
 -- READ
 -- get all associations of Concessions and Items
-SELECT concessions_id, item_id
-FROM Concessions_has_Items
+SELECT concession_details_id AS ID, concessions_id, item_id FROM `Concessions_has_Items`;
 
 --UPDATE
 --update the association between a Concession Sale and an Item (M-to-M relationship update)

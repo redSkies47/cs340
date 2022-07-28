@@ -64,7 +64,7 @@
         {{!-- Body section --}}
         <tbody>
 
-            {{!-- For each row, print the id, fname, lname, homeworld and age, in order --}}
+            {{!-- For each row, print the genre id and the genre name --}}
             {{#each data}}
             <tr>
                 <td>{{this.genre_id}}</td>
@@ -78,7 +78,7 @@
 
   <!--Insert Genres-->
   <div id="insertGenre">
-    <form id="add-genre-form" method="POST" action="/add-genre-form">
+    <form id="add-genre-form" method="POST">
         <legend><strong>Add Genres</strong></legend>
           <fieldset class="fields">
             <label for="input-genre-id">genre id</label>

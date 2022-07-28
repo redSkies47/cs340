@@ -34,7 +34,6 @@
 </head>
 
 <body onload="browseRatings()">
-  <!--Shows-->
   <h1 style="text-align: center;" class="title">Ratings</h1>
   <div style="text-align: center;">
   [ <a href="Movies">Movies</a> | <a href="Genres">Genres</a> | <a href="Ratings">Ratings</a> | <a href="Tickets">Tickets</a> | <a href="Ticket_Types">Ticket Types</a> | 
@@ -42,37 +41,54 @@
 <p>&nbsp;</p>
  <div id="browse">
  <!--Ratings-->
- <table border="1" cellpadding="5" style="margin-left: auto; margin-right: auto;" class="table">
-    <caption style="text-align:center"><strong>Ratings</strong></caption>
-    <tr>
-      <th><a href="#" onClick="newRatings()">Add +</a></th>
-      <th class="pk">rating_id</th>
-      <th>rating_description</th>
-    </tr>
-    <tr>
-      <td></td>
-      <td>1</td>
-      <td>G</td>
-    </tr>
-  </table>
+  <div id="browse">
+   {{!-- Create a table --}}
+    <table id="ratings-table" border="1" cellpadding="5" style="margin-left: auto; margin-right: auto;" class="table">
+        <caption style="text-align:center"><strong>Ratings</strong></caption>
+        {{!-- Header section --}}
+        <thead>
+
+            {{!-- For just the first row, we print each key of the row object as a header cell so we
+            know what each column means when the page renders --}}
+            <tr>
+                
+                {{#each data.[0]}}
+                <th class="pk">
+                    {{@key}}
+                </th>
+                {{/each}}
+                <th><a href="#" onClick="newRatings()">Add +</a></th>
+            </tr>
+        </thead>
+
+        {{!-- Body section --}}
+        <tbody>
+
+            {{!-- For each row, print the genre id and the genre name --}}
+            {{#each data}}
+            <tr>
+                <td>{{this.rating_id}}</td>
+                <td>{{this.rating_description}}</td>
+            </tr>
+            {{/each}}
+        </tbody>
+    </table>
+  </div>
   </div>
   <p style="text-align: center;"><a href="#" onClick="showAll()">Display all forms</a> | <a href="#" onClick="showform()">Hide all forms</a> </p>
 
-  <!--Insert Shows-->
   <!--Insert Ratings-->
   <div id="insertRating">
     <form method="POST" id="addRatings">
         <legend><strong>Add Ratings</strong></legend>
           <fieldset class="fields">
-            <label> rating id </label> <select name="rating_id">
-              <option value="0">&nbsp;</option>
-                <option value="1">1</option>
-                <option value="2">2</option>
-                <option value="3">3</option>
-                </select>
-            <label> rating description </label> <input type="text" name="rating_description"> 
+            <label for "input-rating-id"> rating id </label>
+            <input type="number" id="input-rating-id" name="input-rating-id">
+
+            <label for="input-rating-description" > rating description </label>
+            <input type="text" id="input-rating-description" name="input-rating-description"> 
       </fieldset>
-          <input class="btn" type="submit" id="addRatings" value="Add Ratings">
+          <input class="btn" type="submit" id="addRatings">
           <input class="btn" type="button" value="cancel" onClick="browseRatings()">
   </form> 
 </div>

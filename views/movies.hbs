@@ -58,24 +58,47 @@
     </div>
     <p>&nbsp;</p>
       <caption style="text-align:center"><strong>Movies</strong></caption>
-      <tr>
-        <th><a href="#" onClick="insertMovie()">Add +</a></th>
-        <th></th>
-        <th class="pk">movie_id</th>
-        <th>movie_name</th>
-        <th>movie_description</th>
-        <th class="fk">rating_id</th>
-        <th class="fk">hall_number</th>
-      </tr>
-      <tr>
-        <td></td>
-        <th><a href="#" onClick="deleteMovie()">Delete</a></th>
-        <td>1</td>
-        <td>Revenge of Darth Jar Jar</td>
-        <td>Somehow Darth Jar Jar has returned.</td>
-        <td>2</td>
-        <td>1</td>
-      </tr>
+      <thead>
+        <tr>
+          <th><a href="#" onClick="insertMovie()">Add +</a></th>
+          <th></th>
+          <th class="pk">movie_id</th>
+          <th>movie_name</th>
+          <th>movie_description</th>
+          <th class="fk">rating_id</th>
+          <th class="fk">hall_number</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td></td>
+          <th><a href="#" onClick="deleteMovie()">Delete</a></th>
+          <td>1</td>
+          <td>Revenge of Darth Jar Jar</td>
+          <td>Somehow Darth Jar Jar has returned.</td>
+          <td>2</td>
+          <td>1</td>
+        </tr>
+        <tr>
+          <td></td>
+          <th><a href="#" onClick="deleteMovie()">Delete</a></th>
+          <td>2</td>
+          <td>Finding Marlin</td>
+          <td>A clownfish journeys to bring father home.</td>
+          <td>1</td>
+          <td>1</td>
+        </tr>
+        <tr>
+          <td></td>
+          <th><a href="#" onClick="deleteMovie()">Delete</a></th>
+          <td>3</td>
+          <td>More Fast More Furious</td>
+          <td>The crew team up in Miami to bring down crime lord...</td>
+          <td>2</td>
+          <td>2</td>
+        </tr>
+      </tbody>
+      
       </table>
     </div>
     <p style="text-align: center;"><a href="#" onClick="showAll()">Display all forms</a> | <a href="#" onClick="showform()">Hide all forms</a> </p>
@@ -131,18 +154,36 @@
  <div id="browse">
     <table border="1" cellpadding="5" style="margin-left: auto; margin-right: auto;" class="table">
         <caption style="text-align:center"><strong>Movies Has Genres</strong></caption>
-        <tr>
+        <thead>
+          <tr>
           <th><a href="#" onClick="newMovieHasGenre()">Add +</a></th>
           <th class="pk">movie_genre_id</th>
           <th>movie_id</th>
           <th>genre_id</th>
         </tr>
-        <tr>
-          <td></td>
-          <td>1</td>
-          <td>1</td>
-          <td>6</td>
-        </tr>
+        </thead>
+        
+        <tbody>
+          <tr>
+            <td></td>
+            <td>1</td>
+            <td>1</td>
+            <td>6</td>
+          </tr>
+          <tr>
+            <td></td>
+            <td>2</td>
+            <td>1</td>
+            <td>7</td>
+          </tr>
+          <tr>
+            <td></td>
+            <td>3</td>
+            <td>2</td>
+            <td>5</td>
+          </tr>
+        </tbody>
+        
       </table>
   </div>
 

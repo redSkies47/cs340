@@ -43,21 +43,40 @@
 <p>&nbsp;</p>
   <div id="browse">
  <table border="1" cellpadding="5" style="margin-left: auto; margin-right: auto;" class="table">
-    <tr>
-      <caption style="text-align:center"><strong>Shows</strong></caption>
-      <th><a href="#" onClick="newShow()">Add +</a></th>
-      <th class="pk">show_id</th>
-      <th>time_start</th>
-      <th>time_end</th>
-      <th class="fk">movie_id</th>
-    </tr>
-    <tr>
-      <td></td>
-      <td>1</td>
-      <td>2022-07-08 14:00:00</td>
-      <td>2022-07-08 16:30:00</td>
-      <td>2</td>
-    </tr>
+    <thead>
+      <tr>
+        <caption style="text-align:center"><strong>Shows</strong></caption>
+        <th><a href="#" onClick="newShow()">Add +</a></th>
+        <th class="pk">show_id</th>
+        <th>time_start</th>
+        <th>time_end</th>
+        <th class="fk">movie_id</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td></td>
+        <td>1</td>
+        <td>2022-07-08 14:00:00</td>
+        <td>2022-07-08 16:30:00</td>
+        <td>2</td>
+      </tr>
+      <tr>
+        <td></td>
+        <td>2</td>
+        <td>2022-07-08 16:30:00</td>
+        <td>2022-07-08 18:00:00</td>
+        <td>1</td>
+      </tr>
+      <tr>
+        <td></td>
+        <td>3</td>
+        <td> 	2022-07-08 19:00:00</td>
+        <td>2022-07-08 20:30:00</td>
+        <td>3</td>
+      </tr>
+    </tbody>
+    
   </table>
   </div>
   <p style="text-align: center;"><a href="#" onClick="showAll()">Display all forms</a> | <a href="#" onClick="showform()">Hide all forms</a> </p>

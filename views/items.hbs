@@ -60,22 +60,42 @@
     <h1 style="text-align: center;" class="title">Items</h1>
     <div style="text-align: center;">
     [ <a href="Movies">Movies</a> | <a href="Genres">Genres</a> | <a href="Ratings">Ratings</a> | <a href="Tickets">Tickets</a> | <a href="Ticket_Types">Ticket Types</a> | 
-    <a href="Shows">Shows</a> | <a href="Items">Items</a> | <a href="Concessions">Concessions</a> | <a href="Employees">Employees</a> ]    <table border="1" cellpadding="5" style="margin-left: auto; margin-right: auto;" class="table">
+    <a href="Shows">Shows</a> | <a href="Items">Items</a> | <a href="Concessions">Concessions</a> | <a href="Employees">Employees</a> ]
+    
+    <table border="1" cellpadding="5" style="margin-left: auto; margin-right: auto;" class="table">
     </div>
     <p>&nbsp;</p>
       <caption style="text-align:center"><strong>Items</strong></caption>
-      <tr>
-        <th><a href="#" onClick="newItem()">Add +</a></th>
-        <th class="pk">item_id</th>
-        <th>item_cost</th>
-        <th>item_name</th>
-      </tr>
-      <tr>
-        <td></td>
-        <td>1</td>
-        <td>6</td>
-        <td>popcorn</td>
-      </tr>
+        <thead>
+          <tr>
+            <th><a href="#" onClick="newItem()">Add +</a></th>
+            <th class="pk">item_id</th>
+            <th>item_cost</th>
+            <th>item_name</th>
+          </tr>
+        </thead>
+        
+        <tbody>
+          <tr>
+            <td></td>
+            <td>1</td>
+            <td>6.00</td>
+            <td>popcorn</td>
+          </tr>
+          <tr>
+            <td></td>
+            <td>2</td>
+            <td>5.00</td>
+            <td>chocolate bar</td>
+          </tr>
+          <tr>
+            <td></td>
+            <td>3</td>
+            <td>8.00</td>
+            <td>cotton candy</td>
+          </tr>
+        </tbody>
+      
       </table>
   </div>
   <p style="text-align: center;"><a href="#" onClick="showAll()">Display all forms</a> | <a href="#" onClick="showform()">Hide all forms</a> </p>

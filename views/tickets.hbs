@@ -44,29 +44,46 @@
     <h1 style="text-align: center;" class="title">Tickets</h1>
     <div style="text-align: center;">
     [ <a href="Movies">Movies</a> | <a href="Genres">Genres</a> | <a href="Ratings">Ratings</a> | <a href="Tickets">Tickets</a> | <a href="Ticket_Types">Ticket Types</a> | 
-    <a href="Shows">Shows</a> | <a href="Items">Items</a> | <a href="Concessions">Concessions</a> | <a href="Employees">Employees</a> ]    <table border="1" cellpadding="5" style="margin-left: auto; margin-right: auto;" class="table">
+    <a href="Shows">Shows</a> | <a href="Items">Items</a> | <a href="Concessions">Concessions</a> | <a href="Employees">Employees</a> ]   
     </div>
     <p>&nbsp;</p>
-      <caption style="text-align:center"><strong>Tickets</strong></caption>
-      <tr>
-        <th><a href="#" onClick="newTicket()">Add +</a></th>
-        <th class="pk">ticket_id</th>
-        <th>ticket_count</th>
-        <th class="fk">ticket_type_id</th>
-        <th>seat_number</th>
-        <th class="fk">show_id</th>
-        <th class="fk">employee_id</th>
-      </tr>
-      <tr>
-        <td></td>
-        <td>1</td>
-        <td>101</td>
-        <td>1</td>
-        <td>11</td>
-        <td>1</td>
-        <td></td>
-      </tr>
+
+      {{!-- Create a table --}}
+      <table id="tickets-table" border="1" cellpadding="5" style="margin-left: auto; margin-right: auto;" class="table">
+          <caption style="text-align:center"><strong>Tickets</strong></caption>
+          {{!-- Header section --}}
+          <thead>
+
+              {{!-- For just the first row, we print each key of the row object as a header cell so we
+              know what each column means when the page renders --}}
+              <tr>
+                  
+                  {{#each data.[0]}}
+                  <th class="pk">
+                      {{@key}}
+                  </th>
+                  {{/each}}
+                  <th><a href="#" onClick="newTicket()">Add +</a></th>
+              </tr>
+          </thead>
+
+          {{!-- Body section --}}
+          <tbody>
+
+              {{!-- For each row, print the genre id and the genre name --}}
+              {{#each data}}
+              <tr>
+                  <td>{{this.ticket_id}}</td>
+                  <td>{{this.ticket_count}}</td>
+                  <td>{{this.ticket_type_id}}</td>
+                  <td>{{this.seat_number}}</td>
+                  <td>{{this.show_id}}</td>
+                  <td>{{this.employee_id}}</td>
+              </tr>
+              {{/each}}
+          </tbody>
       </table>
+
       <p style="text-align: center;"><a href="#" onClick="showAll()">Display all forms</a> | <a href="#" onClick="showform()">Hide all forms</a> </p>
   </div>
   <p>&nbsp;</p>

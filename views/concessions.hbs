@@ -79,6 +79,7 @@
   <p>&nbsp;</p>
  <div id="browse">
     <table table border="1" cellpadding="5" style="margin-left: auto; margin-right: auto;" class="table">
+      <thead>
         <tr>
           <caption style="text-align:center"><strong>Concessions</strong></caption>
           <th><a href="#" onClick="newConcession()">Add +</a></th>
@@ -89,6 +90,8 @@
           <th>price</th>
           <th class="fk">employee_id</th>
         </tr>
+      </thead>
+      <tbody>
         <tr>
           <td></td>
           <td><a href="#" onClick="updateConcession()">Edit</a></td>
@@ -98,6 +101,26 @@
           <td>13</td>
           <td>1</td>
         </tr>
+        <tr>
+          <td></td>
+          <td><a href="#" onClick="updateConcession()">Edit</a></td>
+          <td><a href="#" onClick="deleteConcession()">Delete</a></td>
+          <td>2</td>
+          <td>2022-07-08 13:50:00 	</td>
+          <td>12</td>
+          <td>3</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td><a href="#" onClick="updateConcession()">Edit</a></td>
+          <td><a href="#" onClick="deleteConcession()">Delete</a></td>
+          <td>3</td>
+          <td>2022-07-08 18:52:00</td>
+          <td>11</td>
+          <td>1</td>
+        </tr>
+      </tbody>
+        
       </table>
   </div>
   <p style="text-align: center;"><a href="#" onClick="showAll()">Display all forms</a> | <a href="#" onClick="showform()">Hide all forms</a> </p>
@@ -166,13 +189,6 @@
   <form method="POST" id="addConcessionItems">
       <legend><strong>Add Concessions Items</strong></legend>
         <fieldset class="fields">
-          {{!-- <label for="input-conDetailsID"> concession details id </label>
-            <select id="input-conDetailsID" name="input-conDetailsID">
-              <option value="0">&nbsp;</option>
-              <option value="1">1</option>
-              <option value="2">2</option>
-              <option value="3">3</option>
-            </select> --}}
 
           <label for="input-conDetailsID"> concession details id </label>
           <input type="number" id="input-conDetailsID" name="input-conDetailsID"> 

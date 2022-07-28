@@ -42,22 +42,39 @@
 </div>
 <p>&nbsp;</p>
   <div id="browse">
-  <!--Ticket Types-->
-  <table border="1" cellpadding="5" style="margin-left: auto; margin-right: auto;" class="table">
-    <tr>
-      <caption style="text-align:center"><strong>Ticket_Types</strong></caption>
-      <th><a href="#" onClick="newTicketType()">Add +</a></th>
-      <th class="pk">ticket_type_id</th>
-      <th>ticket_type_name</th>
-      <th>ticket_price</th>
-    </tr>
-    <tr>
-      <td></td>
-      <td>1</td>
-      <td>Child</td>
-      <td>$8.00</td>
-    </tr>
-  </table>
+
+  {{!-- Create a table --}}
+    <table id="ticket-types-table" border="1" cellpadding="5" style="margin-left: auto; margin-right: auto;" class="table">
+        <caption style="text-align:center"><strong>Ticket Types</strong></caption>
+        {{!-- Header section --}}
+        <thead>
+
+            {{!-- For just the first row, we print each key of the row object as a header cell so we
+            know what each column means when the page renders --}}
+            <tr>
+  
+                {{#each data.[0]}}
+                <th class="pk">
+                    {{@key}}
+                </th>
+                {{/each}}
+                <th><a href="#" onClick="newTicketType()">Add +</a></th>
+            </tr>
+        </thead>
+
+        {{!-- Body section --}}
+        <tbody>
+
+            {{!-- For each row, print the genre id and the genre name --}}
+            {{#each data}}
+            <tr>
+                <td>{{this.ticket_type_id}}</td>
+                <td>{{this.ticket_type_name}}</td>
+                <td>{{this.ticket_price}}</td>
+            </tr>
+            {{/each}}
+        </tbody>
+    </table>
   </div>
   <p style="text-align: center;"><a href="#" onClick="showAll()">Display all forms</a> | <a href="#" onClick="showform()">Hide all forms</a> </p>
 
@@ -66,14 +83,14 @@
     <form method="POST" id="addTicketTypes">
         <legend><strong>Add Ticket Types</strong></legend>
           <fieldset class="fields">
-            <label> ticket type id </label> <select name="ticket_type_id">
-              <option value="0">&nbsp;</option>
-                <option value="1">1</option>
-                <option value="2">2</option>
-                <option value="3">3</option>
-                </select>
-            <label> ticket type name </label> <input type="text" name="ticket_type_name"> 
-            <label> ticket price </label> <input type="text" name="ticket_price">
+            <label for="input-type-id">ticket type id</label>
+            <input type="number" id="input-type-id" name="input-type-id">
+
+            <label for="input-type-name">ticket type name</label> 
+            <input type="text" id="input-type-name" name="input-type-name"> 
+
+            <label for="input-ticket-price">ticket price</label>
+            <input type="number" inputmode="decimal" min="0" step=".01" id="input-ticket-price" name="input-ticket-price">
       </fieldset>
           <input class="btn" type="submit" id="addTicketTypes" value="Add Ticket Types">
           <input class="btn" type="button" value="cancel" onClick="browseTicketTypes()">
