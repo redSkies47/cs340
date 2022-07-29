@@ -20,49 +20,13 @@
 
         {{!-- For each row, print the id, fname, lname, homeworld and age, in order --}}
         {{#each data}}
-        <tr data-value={{this.id}}>>
+        <tr>
             <td>{{this.id}}</td>
             <td>{{this.fname}}</td>
             <td>{{this.lname}}</td>
             <td>{{this.homeworld}}</td>
             <td>{{this.age}}</td>
-            <td><button onclick="deletePerson({{this.id}})">Delete</button></td>
         </tr>
         {{/each}}
     </tbody>
 </table>
-<script src="./js/delete_concession_items.js"></script>
-
-<h2>Updating A User's Form</h2>
-<p>To update...</p>
-<form id="update-person-form-ajax">
-
-    <label for="input-fullname">Full name: </label>
-    <select name="input-fullname" id="mySelect">
-        <option value="test">Select a Person</option>
-        {{#each data}}
-        <option value="{{this.id}}">{{this.fname}} {{this.lname}}</option>
-        {{/each}}
-    </select>
-
-    <label for="input-homeworld">Homeworld: </label>
-    <select name="input-homeworld" id="input-homeworld-update">
-        <option>Select a Planet</option>
-        {{#each planets}}
-        <option value="{{this.id}}">{{this.name}}</option>
-        {{/each}}
-    </select>
-    <input type="submit">
-
-    <label for="input-homeworld">Homeworld: </label>
-    <select name="input-homeworld" id="input-homeworld-update">
-        <option>Select a Planet</option>
-        {{#each planets}}
-        <option value="{{this.id}}">{{this.name}}</option>
-        {{/each}}
-    </select>
-    <input type="submit">
-
-</form>
-
-<script src="./js/update_person.js"></script>

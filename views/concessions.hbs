@@ -152,7 +152,7 @@
 
 <!--Concessions_has_items-->
 <div id="browse">
-  <table border="1" id="concessionItemsTable" cellpadding="5" style="margin-left: auto; margin-right: auto;" class="table">
+  <table border="1" cellpadding="5" style="margin-left: auto; margin-right: auto;" class="table">
         <caption style="text-align:center"><strong>Concessions Has Items</strong></caption>
         {{!-- Header section --}}
         <thead>
@@ -205,8 +205,8 @@
 </div>
 
 <!--Update Concessions has items-->
-<div id="updateConcessionItems">
-  <form method="POST" id="updateConcessionItems">
+<div id="updateConcession">
+  <form method="POST" id="UpdateConcession">
       <legend><strong>Update Concession has items</strong></legend>
         <fieldset class="fields">
         <input type="hidden" name="concessionHasItemsID" id="updateConcessionHasItemsID" value="1">
@@ -221,19 +221,19 @@
             <label> concession id </label> <input type="text" name="input-concession-id"> 
             <label> item id </label> <input type="text" name="item_id"> 
     </fieldset>
-        <input class="btn" type="submit" id="UpdateConcessionItemsID" value="Update Concession Items">
+        <input class="btn" type="submit" id="UpdateConcessionItems" value="Update Concession Items">
         <input class="btn" type="button" value="cancel" onClick="browseConcessions()">
 </form> 
 </div>
 <p>&nbsp;</p>
 
-<!--Delete Concessions has items-->
-<div id="deleteConcessionItems" style="display: block">
-<form method="POST" id="deleteConcessionItems">
+<!--Delete Concessions-->
+<div id="deleteConcessions" style="display: block">
+<form method="POST" id="deleteConcession">
     <legend><strong>Delete Concession has items</strong></legend>
         <fieldset class="fields">
         <p>Are you sure you wish to delete the following?</p>
-        <input type="hidden" name="ConcessionID" id="deleteConcessionItemsID" value="1">
+        <input type="hidden" name="ConcessionID" id="deleteConcessioneID" value="1">
         <label><strong>ID:</strong></label> 1
           <label> <strong>Concession has items</strong> </label> 
 
