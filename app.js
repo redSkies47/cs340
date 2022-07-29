@@ -7,7 +7,7 @@ var app     = express();            // We need to instantiate an express object 
 app.use(express.json())
 app.use(express.urlencoded({extended: true}))
 
-PORT        = 50505;                 // Set a port number at the top so it's easy to change in the future
+PORT        = 23691;                 // Set a port number at the top so it's easy to change in the future
 
 // Database
 var db = require('./database/db-connector')
@@ -329,6 +329,73 @@ app.post('/Concessions', function(req, res){
         }
     })
 });
+
+app.delete('/Concessions', function(req,res,next){
+    let data = req.body;
+    let deleteConcessionItemsID = parseInt(data.id);
+    let deleteConcession_has_Items = `DELETE FROM Concessions_has_Items WHERE concessions_id = ?`;
+    let deleteConcessions= `DELETE FROM Concessions WHERE concession_id = ?`;
+  
+  
+          // Run the 1st query
+          db.pool.query(deleteConcession_has_Items, [deleteConcessionItemsID], function(error, rows, fields){
+              if (error) {
+  
+              // Log the error to the terminal so we know what went wrong, and send the visitor an HTTP response 400 indicating it was a bad request.
+              console.log(error);
+              res.sendStatus(400);
+              }
+  
+              else
+              {
+                  // Run the second query
+                  db.pool.query(deleteConcessions, [deleteConcessionItemsID], function(error, rows, fields) {
+  
+                      if (error) {
+                          console.log(error);
+                          res.sendStatus(400);
+                      } else {
+                          res.sendStatus(204);
+                      }
+                  })
+              }
+  })});
+
+app.put('/Concessions', function(req,res,next){
+  let data = req.body;
+
+  
+  let homeworld = parseInt(data.homeworld);
+  let person = parseInt(data.fullname);
+
+  let queryUpdateWorld = `UPDATE bsg_people SET homeworld = ? WHERE bsg_people.id = ?`;
+  let selectWorld = `SELECT * FROM bsg_planets WHERE id = ?`
+
+        // Run the 1st query
+        db.pool.query(queryUpdateWorld, [homeworld, person], function(error, rows, fields){
+            if (error) {
+
+            // Log the error to the terminal so we know what went wrong, and send the visitor an HTTP response 400 indicating it was a bad request.
+            console.log(error);
+            res.sendStatus(400);
+            }
+
+            // If there was no error, we run our second query and return that data so we can use it to update the people's
+            // table on the front-end
+            else
+            {
+                // Run the second query
+                db.pool.query(selectWorld, [homeworld], function(error, rows, fields) {
+
+                    if (error) {
+                        console.log(error);
+                        res.sendStatus(400);
+                    } else {
+                        res.send(rows);
+                    }
+                })
+            }
+})});
 
 
 // READ operation for Employees
