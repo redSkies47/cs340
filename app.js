@@ -318,8 +318,8 @@ app.post('/Concessions', function(req, res){
             
             // Log the error to the terminal so we know what went wrong, and send the visitor an HTTP response 400 indicating it was a bad request.
             console.log(error)
-            res.send(JSON.stringify(error));
-            // res.sendStatus(400);
+            // res.send(JSON.stringify(error));
+            res.sendStatus(400);
         }
          // If there was no error, we redirect back to our Genres route, which automatically runs the SELECT * FROM Genres and
         // presents it on the screen
@@ -328,6 +328,34 @@ app.post('/Concessions', function(req, res){
             res.redirect('/Concessions')
         }
     })
+});
+
+
+// DELETE operation for Concession_has_Items
+app.delete('/delete-con-has-ajax/', function(req,res,next){
+    let data = req.body;
+    let conDetailsID = parseInt(data.ID)
+    // let deleteConcessionItemsID = parseInt(data.id);
+    // let deleteConcession_has_Items = `DELETE FROM Concessions_has_Items WHERE concessions_id = ?`;
+    // let deleteConcessions= `DELETE FROM Concessions WHERE concession_id = ?`;
+  
+  
+    // Run the 1st query
+    db.pool.query([conDetailsID], function(error, rows, fields){
+        if (error) {
+
+        // Log the error to the terminal so we know what went wrong, and send the visitor an HTTP response 400 indicating it was a bad request.
+        console.log(error);
+        res.sendStatus(400);
+        }
+
+        else
+        {
+            // Success
+            res.sendStatus(204);
+
+        }
+    });
 });
 
 
