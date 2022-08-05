@@ -1,15 +1,19 @@
+@import url('https://fonts.googleapis.com/css2?family=Lobster&family=Montserrat:wght@500&display=swap');
+
 * {
   box-sizing: border-box;
   margin: 0;
   padding: 0;
   background-color: #24252A;
+  font-size: 16px;
+  color: white;
 }
 
 li, a {
   font-family: 'Montserrat', sans-serif;
   font-weight: 500;
-  font-size: 16px;
   color: #edf0f1;
+  text-decoration: none;
 }
 
 header {
@@ -17,4 +21,40 @@ header {
   justify-content: space-between;
   align-items: center;
   padding: 30px 10%;
+}
+
+h1 {
+  text-align: center;
+  padding: 20px;
+  font-family: 'Lobster', cursive;
+  font-size: 3.5em;
+}
+
+h3 {
+  text-align: center;
+  font-family: 'Lobster', cursive;
+  font-size: 1.75em;
+}
+
+.project_intro {
+  margin-bottom: 25px;
+}
+
+.nav_links {
+  list-style: none;
+  text-align: center;
+  padding-bottom: 20px;
+}
+
+.nav_links li {
+  display: inline-block;
+  padding: 0px 20px;
+}
+
+.nav_links li a {
+  transition: all 0.3s ease 0s;
+}
+
+.nav_links li a:hover {
+  color: #F71735;
 }
