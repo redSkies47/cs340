@@ -9,7 +9,7 @@
           document.getElementById('browse').style.display = 'block';
           document.getElementById('insertGenre').style.display = 'none';
         }
-        else if (dowhat == 'insertShow'){
+        else if (dowhat == 'insertGenre'){
           document.getElementById('browse').style.display = 'none';
           document.getElementById('insertGenre').style.display = 'block';
         }
@@ -34,7 +34,7 @@
   <h1 style="text-align: center;" class="title">Genres</h1>
   <ul class="nav_links">
     <li><a href="Movies">Movies</a></li>
-    <li><a href="Genres">Genres</a></li>
+    <li class="active"><a href="Genres">Genres</a></li>
     <li><a href="Ratings">Ratings</a></li>
     <li><a href="Tickets">Tickets</a></li>
     <li><a href="Ticket_Types">Ticket Types</a></li>
@@ -43,11 +43,10 @@
     <li><a href="Concessions">Concessions</a></li>
     <li><a href="Employees">Employees</a></li>
   </ul>
-  <p>&nbsp;</p>
  <div id="browse">
    {{!-- Create a table --}}
-    <table id="genre-table" border="1" cellpadding="5" style="margin-left: auto; margin-right: auto;" class="table">
-        <caption style="text-align:center"><strong>Genres</strong></caption>
+    <table id="genre-table" class="table">
+        <caption>Genres</caption>
         {{!-- Header section --}}
         <thead>
 
@@ -60,7 +59,6 @@
                     {{@key}}
                 </th>
                 {{/each}}
-                <th><a href="#" onClick="newGenre()">Add +</a></th>
             </tr>
         </thead>
 
@@ -77,11 +75,15 @@
         </tbody>
     </table>
   </div>
-  <p style="text-align: center;"><a href="#" onClick="showAll()">Display all forms</a> | <a href="#" onClick="showform()">Hide all forms</a> </p>
+  <p id="functionality" style="text-align: center;">
+    <a href="#" onClick="newGenre()">Add +</a>  |
+    <a href="#" onClick="showAll()">Display all forms</a> | 
+    <a href="#" onClick="showform()">Hide all forms</a>
+  </p>
 
   <!--Insert Genres-->
   <div id="insertGenre">
-    <form id="add-genre-form" method="POST">
+    <form id="add-genre-form" method="POST" class="form">
         <legend><strong>Add Genres</strong></legend>
           <fieldset class="fields">
             <label for="input-genre-id">genre id</label>
@@ -90,7 +92,7 @@
             <label for="input-genre-name"> genre name </label> 
             <input type="text" id="input-genre-name" name="input-genre-name"> 
           </fieldset>
-          <input class="btn" type="submit">
+          <input class="btn" type="submit" id="submit-btn">
           {{!-- <input class="btn" type="submit" id="addGenres" value="Add Genre"> --}}
           {{!-- <input class="btn" type="button" value="cancel" onClick="browseGenres()"> --}}
     </form> 

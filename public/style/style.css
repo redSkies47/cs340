@@ -1,16 +1,16 @@
 @import url('https://fonts.googleapis.com/css2?family=Lobster&family=Montserrat:wght@500&display=swap');
 
-* {
+body {
   box-sizing: border-box;
   margin: 0;
   padding: 0;
-  background-color: #24252A;
+  background: #24252A;
+  font-family: 'Montserrat', sans-serif;
   font-size: 16px;
-  color: white;
+  color: #edf0f1;
 }
 
 li, a {
-  font-family: 'Montserrat', sans-serif;
   font-weight: 500;
   color: #edf0f1;
   text-decoration: none;
@@ -25,7 +25,7 @@ header {
 
 h1 {
   text-align: center;
-  padding: 20px;
+  padding: 15px;
   font-family: 'Lobster', cursive;
   font-size: 3.5em;
 }
@@ -37,18 +37,17 @@ h3 {
 }
 
 .project_intro {
-  margin-bottom: 25px;
+  margin-bottom: 10px;
 }
 
 .nav_links {
   list-style: none;
   text-align: center;
-  padding-bottom: 20px;
 }
 
 .nav_links li {
   display: inline-block;
-  padding: 0px 20px;
+  padding: 10px 20px;
 }
 
 .nav_links li a {
@@ -57,4 +56,85 @@ h3 {
 
 .nav_links li a:hover {
   color: #F71735;
+}
+
+.active {
+  background-color: #679436;
+  padding-top: 30px;
+  padding-bottom: 30px;
+}
+
+#genre-table {
+  width: 60%;
+  margin-left: auto;
+  margin-right: auto;
+  border-collapse: collapse;
+  border-spacing: 0;
+  border-radius: 15px;
+  overflow: hidden;
+  box-shadow: 0 5px 12px rgba(238, 234, 234, 0.3);
+  background: #edf0f1;
+  color: #24252A;
+  text-align: center;
+}
+
+#genre-table th, #genre-table td {
+  padding: 12px 15px;
+}
+
+#genre-table th {
+  background-color: #679436;
+  color: #fafafa;
+  text-transform: uppercase;
+}
+
+#genre-table td {
+  font-family: 'Open Sans', sans-serif;
+}
+
+#genre-table tr:nth-child(odd) {
+  background-color: #A3BE86;
+}
+
+caption {
+  color: #edf0f1;
+}
+
+#functionality {
+  text-align: center;
+  padding: 10px;
+}
+
+.form {
+  max-width: 500px;
+  margin: 2rem auto;
+  padding: 10px;
+}
+
+.form label {
+  display: block;
+  padding: 1rem 0 .25rem;
+  font-family: inherit;
+  font-size: 14px;
+}
+
+.form input {
+  width: 95%;
+  border: 2px solid #679436;
+  border-radius: 5px;
+  padding: 5px;
+  font-family: 'Open Sans', sans-serif;
+  padding: 5px;
+}
+
+#submit-btn {
+  border: 0;
+  background: #47cf73;
+  padding: 5px;
+  color: #24252A;
+  margin: 1rem 0;
+  width: auto;
+  text-transform: uppercase;
+  cursor: pointer;
+  border-radius: 5px;
 }
